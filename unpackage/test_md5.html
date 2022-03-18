@@ -4,12 +4,81 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <script src="../js/md5.js"></script>
-    <script type="application/javascript">
-        let hashCode = md5("i am lzc")
-        alert(hashCode)
-    </script>
+<!--    <script src="../js/md5.js"></script>-->
+<!--    <script type="application/javascript">-->
+<!--        let hashCode = md5("i am lzc")-->
+<!--        // alert(hashCode)-->
+<!--    </script>-->
 
+<!--    <script src="../js/crypto-js.min.js"></script>-->
+
+<!--    <script type="application/javascript">-->
+<!--        let aseKey = "123456"-->
+<!--        let message = "i am lzc who are you"-->
+
+<!--        //    加密 DES/AES 切换 只需要修改CryptoJS.AES<==> CryptoJs.DES-->
+<!--        let encrypt = CryptoJS.DES.encrypt(message, CryptoJS.enc.Utf8.parse(aseKey), {-->
+<!--            mode: CryptoJS.mode.ECB,-->
+<!--            padding: CryptoJS.pad.Pkcs7-->
+<!--        }).toString();-->
+
+
+<!--        alert(encrypt);-->
+
+<!--        // 解密-->
+<!--        let decrypt = CryptoJS.DES.decrypt(encrypt, CryptoJS.enc.Utf8.parse(aseKey), {-->
+<!--            mode: CryptoJS.mode.ECB,-->
+<!--            padding: CryptoJS.pad.Pkcs7-->
+<!--        }).toString(CryptoJS.enc.Utf8);-->
+
+<!--        alert(decrypt);-->
+<!--    </script>-->
+
+<!--    <script src="../js/jsencrypt.min.js"></script>-->
+<!--    <script>-->
+<!--        let PUBLIC_KEY="-&#45;&#45;&#45;&#45;BEGIN PUBLIC KEY-&#45;&#45;&#45;&#45;\n" +-->
+<!--            "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBhRaag3TE7qu9pLNQGA/bJ+PU\n" +-->
+<!--            "hRiPGC464fAqmkNJwsr2LMZ6awWtxJ8ufpK8WPZptboMayssB8CNnqQX8vCPmArg\n" +-->
+<!--            "VNw+ysPtnhbN/KBmIq3R/62+O2IkJd5cPL1PwDNCFAmANTqaiEGKLrJgCklCC51c\n" +-->
+<!--            "WJhAzIPZ6/GIVxoSVwIDAQAB\n" +-->
+<!--            "-&#45;&#45;&#45;&#45;END PUBLIC KEY-&#45;&#45;&#45;&#45;";-->
+<!--        let PRIVATE_KEY = "-&#45;&#45;&#45;&#45;BEGIN PRIVATE KEY-&#45;&#45;&#45;&#45;\n" +-->
+<!--            "MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAMGFFpqDdMTuq72k\n" +-->
+<!--            "s1AYD9sn49SFGI8YLjrh8CqaQ0nCyvYsxnprBa3Eny5+krxY9mm1ugxrKywHwI2e\n" +-->
+<!--            "pBfy8I+YCuBU3D7Kw+2eFs38oGYirdH/rb47YiQl3lw8vU/AM0IUCYA1OpqIQYou\n" +-->
+<!--            "smAKSUILnVxYmEDMg9nr8YhXGhJXAgMBAAECgYEApG/6bQEWz+Aeft7cn0pS7t5O\n" +-->
+<!--            "cd9GpxDc95vU/95lHuAuplAVtyAJi0ZwHInhFbpiaCDLHpJR9PABZlVPCiqczWwH\n" +-->
+<!--            "kpbbrBt8vvNRZ8hsRdVmcWntf4Nn1HQeY8tO0wDgCZ9SIrz6FrrwucDQ6QNG6U8h\n" +-->
+<!--            "qXR0YHLKra3QM+fcZAECQQDv8tJ86tV+kPnEHKauthGySgP0XDM0TK5An/vW8XRh\n" +-->
+<!--            "mElTXlHM0L9i4T1+9WQ84lB9Ozj9qBo3Pht8oMiZNcbBAkEAzncp/BC7KmXNkSiN\n" +-->
+<!--            "DljjMnBZ3biMBDfiQdVYATzg2cFazR5a8rUCgqS3/iISxK+9V8HA/Loj+c32Ezy8\n" +-->
+<!--            "GcH3FwJBALq8U9lJfMsaEnbwATw4j38cIQW791F9V6MNnpWBpZwKQw5xeeGWl0th\n" +-->
+<!--            "lVVHrjG/wvoi69BkUbqqSAPusQ6jDkECQDSoienDLqlqm5p5ODi/jPrRUupM5lEx\n" +-->
+<!--            "G6Dk0/RE3ahMO2dzZYjfh8tgTZkggZ7un6EhRqJuqzxMPoW7iNIc+XMCQQCrf82P\n" +-->
+<!--            "D0yNHu9c0MfqBH8o2iEuVmYfxjB9DFfAeyb8dErWJO7E8wQMI3WFhCjervhTboxK\n" +-->
+<!--            "LpGqIA5WSAlmufwK\n" +-->
+<!--            "-&#45;&#45;&#45;&#45;END PRIVATE KEY-&#45;&#45;&#45;&#45;\n";-->
+<!--        // 实例化一个加密对象-->
+<!--        let encrypt = new JSEncrypt();-->
+<!--        // 设置公钥-->
+<!--        encrypt.setPublicKey(PUBLIC_KEY);-->
+<!--        // 对数据进行加密-->
+<!--        let encrypted = encrypt.encrypt("hello,lzc");-->
+<!--        alert(encrypted);-->
+
+<!--        // 使用私钥解密-->
+<!--        let decrypt = new JSEncrypt();-->
+<!--        // 设置私钥-->
+<!--        decrypt.setPrivateKey(PRIVATE_KEY);-->
+<!--        // 解密-->
+<!--        let uncrypted = decrypt.decrypt(encrypted);-->
+<!--        alert(uncrypted)-->
+
+<!--    </script>-->
+    <script type="text/javascript">
+        window.btoa('china is so nb') // 编码
+        window.atob("Y2hpbmEgaXMgc28gbmI=") // 解码
+    </script>
 </head>
 <body>
 
