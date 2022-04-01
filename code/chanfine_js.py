@@ -15,7 +15,7 @@ import execjs
 node = execjs.get()
 
 # 加载js
-ctx = node.compile(file := open("../js/single/changfang.js", encoding="utf-8").read())
+ctx = node.compile(open("../js/single/changfang.js", encoding="utf-8").read())
 
 # 调用函数名
 funcName = "getPwd('{0}')".format("123456")
