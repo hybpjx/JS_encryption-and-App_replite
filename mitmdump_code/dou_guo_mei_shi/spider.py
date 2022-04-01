@@ -13,7 +13,8 @@ import json
 import requests
 from multiprocessing import Queue
 from save_mongo import mongo_info
-
+# 通过这个包 来实现多线程
+from concurrent.futures import ThreadPoolExecutor
 
 # 创建队列
 
@@ -141,23 +142,26 @@ def handle_menu_list(data):
                 # '_session': '1648803222365174d0d6d58a4b4cb',
                 'author_id': '0',
                 '_vs': '11102',
-                '_ext': '{"query":{"kw":'+str(menu_info['menu_name'])+',"src":"11102","idx":"2","type":"13","id":'+str(menu_info['menu_id'])+'}}',
+                '_ext': '{"query":{"kw":' + str(
+                    menu_info['menu_name']) + ',"src":"11102","idx":"2","type":"13","id":' + str(
+                    menu_info['menu_id']) + '}}',
                 'is_new_user': '1',
                 # 'sign_ran': '0b705139094fb19a6ae7cae50f0249d5',
                 # 'code': '469de5e50cefa60a'
             }
 
-            detail_response = handle_requests(url=detail_url,data=detail_data)
+            detail_response = handle_requests(url=detail_url, data=detail_data)
             # 解析出 制作方法
             # print(detail_response.text)
 
-            detail_response_json=json.loads(detail_response.text)
+            detail_response_json = json.loads(detail_response.text)
             # 制作方法
-            menu_info['tips']  =detail_response_json['result']['recipe']['tips']
+            menu_info['tips'] = detail_response_json['result']['recipe']['tips']
             # 制作步骤
-            menu_info['cook_step']  =detail_response_json['result']['recipe']['cookstep']
+            menu_info['cook_step'] = detail_response_json['result']['recipe']['cookstep']
             # print(menu_info)
-            print("当前入库的菜谱是:",menu_info['menu_name'])
+            print("当前入库的菜谱是:", menu_info['menu_name'])
+            # 插入mongo
             mongo_info.insert_mongo(menu_info)
 
         else:
@@ -166,7 +170,16 @@ def handle_menu_list(data):
 
 handle_index()
 
-# get 是取出
-handle_menu_list(queue_list.get())
+# 通过多线程 来请求 队列中的数据 # 每秒请求几个 就 写几个 workers
+pool = ThreadPoolExecutor(max_workers=20)
 
-# print(queue_list.qsize()) # 518
+# 判断 线程队列的大小数字 是否大于20  大于20 则 执行
+while queue_num := queue_list.qsize() >= 20:
+    # submit 前面执行的是函数  后面的传入的参数
+    pool.submit(handle_menu_list, queue_list.get())
+
+
+
+
+# # get 是取出
+# handle_menu_list(queue_list.get())
