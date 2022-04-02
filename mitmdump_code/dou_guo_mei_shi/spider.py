@@ -9,8 +9,8 @@
 # @Software: PyCharm
 """
 import json
-
 import requests
+# 引入了队列
 from multiprocessing import Queue
 from save_mongo import mongo_info
 # 通过这个包 来实现多线程
@@ -107,22 +107,29 @@ def handle_index():
                 }
                 # print(data_2)
                 # 需求是通过多线程 线程池来进行抓取
-                # queue.put 是放
+                # queue.put 是向队列内部放数据
                 queue_list.put(data_2)
 
 
+# 线程的处理函数
 def handle_menu_list(data):
+    """
+    线程的处理函数 把队列里里面的data_get 取出来
+    请求的是菜谱里的列表页和详情页
+    :param data: 是列表中 爬取出来的菜谱的值
+    :return:
+    """
     print("当前处理的食材为：", data["keyword"])
     menu_list_url = "https://api.douguo.net/recipe/v2/search/0/20"
+    # 第一次请求
     menu_list_response = handle_requests(url=menu_list_url, data=data)
     # print(menu_list_response.text)
 
     menu_json_text = json.loads(menu_list_response.text)
     for item in menu_json_text['result']['list']:
-        menu_info = {}
+        menu_info = {"menu": data["keyword"]}
 
         # 哪道食材
-        menu_info["menu"] = data["keyword"]
         if item['type'] == 13:
             # 厨师昵称
             menu_info['cooker_name'] = item['r']['an']
@@ -149,7 +156,7 @@ def handle_menu_list(data):
                 # 'sign_ran': '0b705139094fb19a6ae7cae50f0249d5',
                 # 'code': '469de5e50cefa60a'
             }
-
+            # 第二次请求
             detail_response = handle_requests(url=detail_url, data=detail_data)
             # 解析出 制作方法
             # print(detail_response.text)
@@ -161,7 +168,7 @@ def handle_menu_list(data):
             menu_info['cook_step'] = detail_response_json['result']['recipe']['cookstep']
             # print(menu_info)
             print("当前入库的菜谱是:", menu_info['menu_name'])
-            # 插入mongo
+            # 插入mongo中去
             mongo_info.insert_mongo(menu_info)
 
         else:
@@ -177,9 +184,6 @@ pool = ThreadPoolExecutor(max_workers=20)
 while queue_num := queue_list.qsize() >= 20:
     # submit 前面执行的是函数  后面的传入的参数
     pool.submit(handle_menu_list, queue_list.get())
-
-
-
 
 # # get 是取出
 # handle_menu_list(queue_list.get())

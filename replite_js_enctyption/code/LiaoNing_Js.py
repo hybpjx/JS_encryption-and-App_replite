@@ -14,7 +14,7 @@ import execjs
 node = execjs.get()
 
 # 加载js
-ctx = node.compile(open("../js/single/LiaoNingTest.js",encoding="utf-8").read())
+ctx = node.compile(open("../js/single/LiaoNingTest.js", encoding="utf-8").read())
 
 # 调用函数名
 funcName="__doPostBack('{0}','')".format("gvPL$ctl04$lbtnPL")
