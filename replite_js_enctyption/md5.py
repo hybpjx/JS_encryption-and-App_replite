@@ -10,9 +10,9 @@
 """
 from hashlib import md5
 
-print(md5(b"http://blog.csdn.net/iamhuanggua/article/details/53104838/").hexdigest())
+print(md5(b"http://ggzy.shenyang.gov.cn/gcjszb/119440.jhtml").hexdigest())
 
-
+print(len("MS4wLjABAAAAd3tdGW1mnhYO5APn9gZFNoI-4rrgyV43wI0NskkFw5k"))
 
 # d25e88a933a657a2a99c2f6ccb665345
 # 6f60c2e6af664c2663efbe4293666b9b
