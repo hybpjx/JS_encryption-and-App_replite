@@ -15,7 +15,7 @@ url="http://ip.hahado.cn/ip"
 # 定义一个字典
 proxy={
     # 'http':'http://通行证书:通行密钥@代理服务器的地址:代理地址的端口',
-    'http':'http://218.75.102.198:8000',
+    'http':'http://H884Y26940NA13ND:3B8B6ACDE5871EFA@http-dyn.abuyun.com:9020',
 }
 
 response= requests.get(url=url,proxies=proxy)
