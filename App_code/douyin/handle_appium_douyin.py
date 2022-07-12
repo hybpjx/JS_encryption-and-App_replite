@@ -46,9 +46,6 @@ def handle_appium(device,port):
     # 先允许程序 打开考研帮
     driver = webdriver.Remote(f"http://127.0.0.1:{port}/wd/hub", cap)
 
-
-
-
     # 点击放大镜搜索
     try:
         if WebDriverWait(driver, 10).until(lambda x: x.find_element_by_id("xxxx")):

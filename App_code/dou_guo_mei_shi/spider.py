@@ -58,7 +58,7 @@ def handle_requests(url, data):
         'updatemark': '1646287772.690000000',
         'is-hmos': 'false',
         'app-state': '0',
-        'act-code': '1648781815',
+        'act-spiders': '1648781815',
         'act-timestamp': '1648781815',
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
         'Accept-Encoding': 'gzip, deflate',
@@ -80,7 +80,7 @@ def handle_index():
         # 'v': 'news1648778940,',
         '_vs': '0,',
         # 'sign_ran': 'e12896fef1697ae02542349f035be7f4,',
-        # 'code': 'a37acbcd7086ad95,'
+        # 'spiders': 'a37acbcd7086ad95,'
     }
 
     response = handle_requests(url, data)
@@ -103,7 +103,7 @@ def handle_index():
                     'type': '0',
                     'auto_play_mode': '2',
                     # 'sign_ran': 'aa65936a7abf00cbd4a719487f065076',
-                    # 'code': '423f293442588a81'
+                    # 'spiders': '423f293442588a81'
                 }
                 # print(data_2)
                 # 需求是通过多线程 线程池来进行抓取
@@ -154,7 +154,7 @@ def handle_menu_list(data):
                     menu_info['menu_id']) + '}}',
                 'is_new_user': '1',
                 # 'sign_ran': '0b705139094fb19a6ae7cae50f0249d5',
-                # 'code': '469de5e50cefa60a'
+                # 'spiders': '469de5e50cefa60a'
             }
             # 第二次请求
             detail_response = handle_requests(url=detail_url, data=detail_data)

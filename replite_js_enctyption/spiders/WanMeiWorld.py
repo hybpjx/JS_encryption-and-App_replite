@@ -28,9 +28,8 @@ print(key)
 # 加密的逆向
 node = execjs.get()
 
-ctx = node.compile(open("../js/single/wanmei.js", encoding="utf-8").read().replace("\xa0", ''))
+ctx = node.compile(open("../js/single/wanmei.js", encoding="utf-8"))
 
 funcName: str = 'getPwd("{0}","{1}")'.format("123456", key)
-
 pwd = ctx.eval(funcName)
 print(pwd)
